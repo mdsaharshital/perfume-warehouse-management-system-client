@@ -1,0 +1,59 @@
+/* THE CARD HOLDS THE FRONT AND BACK FACES */
+.thecard{
+    width: 250px;
+    height: 320px;
+    border-radius: 10px;
+    transform-style: preserve-3d;
+    transition: all 0.8s ease;
+    
+  }
+  
+  .thecard:hover{
+    transform: rotateY(180deg);
+  }
+  
+   .thefront{
+    position: absolute;
+    top: 0;
+    left: 50px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    background: #ffc728;
+    color: #000;
+  }
+  .thefront img{
+      width: 100%;
+      height: 100%;
+  }
+  .theback{
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    overflow: hidden;
+    background: #fafafa;
+    color: #333;
+    text-align: center;
+    transform: rotateY(180deg);
+  }
+  
+  
+  .thefront h1, .theback h1{
+    padding: 30px;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .thefront p, .theback p{
+    padding: 30px;
+    font-weight: normal;
+    font-size: 12px;
+    text-align: center;
+  }

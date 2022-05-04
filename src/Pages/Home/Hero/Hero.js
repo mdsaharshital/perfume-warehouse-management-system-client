@@ -1,4 +1,5 @@
 import React from "react";
+import ProductCards from "../ProductCards/ProductCards";
 import "./Hero.css";
 
 const Hero = () => {
@@ -12,6 +13,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <ProductCards />
     </div>
   );
 };

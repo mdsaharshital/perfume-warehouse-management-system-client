@@ -1,15 +1,13 @@
 import React from "react";
+import "./ProductCards.css";
+import card1 from "../../../images/fernando-andrade-potCPE_Cw8A-unsplash (1).jpg";
 
 const ProductCards = () => {
   return (
     <div>
       <div class="thecard">
         <div class="thefront">
-          <h1>Front of Card</h1>
-          <p>
-            This is the front of the card. It contains important information.
-            Please see overleaf for more details.
-          </p>
+          <img src={card1} alt="" />
         </div>
 
         <div class="theback">
