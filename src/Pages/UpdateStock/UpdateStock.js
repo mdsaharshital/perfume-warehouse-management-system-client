@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 const UpdateStock = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+
   useEffect(() => {
     const url = `http://localhost:5000/products/${id}`;
     (async () => {
@@ -14,17 +15,33 @@ const UpdateStock = () => {
     })();
   }, [product]);
   const { name, price, quantity, supplier, description, img } = product;
-
-  const handledeliver = async () => {
-    let newQuantity = quantity - 1;
+  // common function to manage quantity
+  const manageQuantity = async (newQuantity, id, msg) => {
     const details = { newQuantity, id };
     const url = `http://localhost:5000/products`;
     const { data } = await axios.put(url, details);
     console.log(data);
     if (!data.success) {
-      toast.error(data.error);
+      return toast.error(data.error);
     }
-    toast.success("Delivered successfully");
+    if (msg) {
+      return toast.success("Added successfully");
+    }
+    return toast.success("Delivered successfully");
+  };
+  // handle delivery
+  const handledeliver = async () => {
+    let newQuantity = quantity - 1;
+    let msg = false;
+    manageQuantity(newQuantity, id, msg);
+  };
+  // handle add quantity from input
+  const addQuantity = (e) => {
+    e.preventDefault();
+    const restockNumber = parseInt(e.target.quantity.value);
+    let newQuantity = parseInt(quantity) + restockNumber;
+    let msg = true;
+    manageQuantity(newQuantity, id, msg);
   };
   return (
     <div className="p-5">
@@ -53,11 +70,23 @@ const UpdateStock = () => {
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               <small>{description}</small>
             </p>
-            <button onClick={handledeliver} className="btn hero-btn">
-              Delivered
-            </button>
           </div>
         </div>
+      </div>
+      <div className="flex flex-col items-center justify-center my-4">
+        <button onClick={handledeliver} className="btn hero-btn me-1">
+          Give Delivery
+        </button>
+        <form onSubmit={addQuantity} className="my-3">
+          <input
+            type="number"
+            name="quantity"
+            placeholder="Add product quanity"
+            className="py-2 px-2"
+            required
+          />
+          <input type="submit" className="btn hero-btn" value={"Restock"} />
+        </form>
       </div>
     </div>
   );
