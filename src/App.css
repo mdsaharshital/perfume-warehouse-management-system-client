@@ -10,10 +10,16 @@
     --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
     --activeItem: #f799a354;
   }
+  /* -----------fonts---------- */
+  @import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Poppins:wght@400;600;700&display=swap');
+
+  /* font-family: 'Beau Rivage', cursive;
+font-family: 'Poppins', sans-serif; */
   *{
       padding: 0;
       margin: 0;
       box-sizing: border-box;
+      font-family: 'Poppins', sans-serif; 
   }
   
   .App {

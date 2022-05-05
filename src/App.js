@@ -4,7 +4,7 @@ import Home from "./Pages/Home/Home/Home";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
 import { ToastContainer } from "react-toastify";
-import UpdateProducts from "./Pages/UpdateProducts/UpdateProducts";
+import UpdateStock from "./Pages/UpdateStock/UpdateStock";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/inventory/:id" element={<UpdateProducts />}></Route>
+        <Route path="/inventory/:id" element={<UpdateStock />}></Route>
       </Routes>
       <Footer />
       <ToastContainer />

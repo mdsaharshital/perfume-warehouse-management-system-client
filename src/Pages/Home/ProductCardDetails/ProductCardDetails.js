@@ -7,14 +7,14 @@ const ProductCardDetails = ({ product }) => {
   const navigate = useNavigate();
   return (
     <div className="mx-auto my-3">
-      <div class=" thecard">
-        <div class="thefront">
+      <div className=" thecard">
+        <div className="thefront">
           <img src={img} alt="" />
         </div>
 
-        <div class="theback">
+        <div className="theback">
           <h3>{name}</h3>
-          <p>Price: {price}</p>
+          <p>Price: ${price}</p>
           <p>Supplier : {supplier}</p>
           <p>Quantity: {quantity}</p>
           <p>
