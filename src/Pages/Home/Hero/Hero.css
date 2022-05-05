@@ -1,14 +1,15 @@
+.hero-container{
+    width: 100vw;
+}
 .hero-btn{
     background: var(--yellow);
     font-weight: bold;
 }
 .banner{
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(../../../images/banner.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
-  
-  

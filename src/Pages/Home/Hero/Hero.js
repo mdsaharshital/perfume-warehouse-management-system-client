@@ -4,7 +4,7 @@ import "./Hero.css";
 
 const Hero = () => {
   return (
-    <div>
+    <div className="hero-container">
       <div className="banner">
         <div className="banner-content flex justify-center items-center h-100">
           <div className="">

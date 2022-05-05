@@ -7,13 +7,13 @@ import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { IconContext } from "react-icons";
 import "./Header.css";
 
-const Header = () => {
+const Header = ({ children }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const showSidebar = () => setSidebarOpen(!isSidebarOpen);
   return (
     <>
-      <IconContext.Provider value={{ color: "" }}>
+      <div className="header-container">
         <div className="navmenu-full">
           <nav className={isSidebarOpen ? "nav-menu active" : "nav-menu"}>
             <ul className="nav-menu-items">
@@ -63,7 +63,8 @@ const Header = () => {
             </ul>
           </nav>
         </div>
-      </IconContext.Provider>
+        <main>{children}</main>
+      </div>
     </>
   );
 };
