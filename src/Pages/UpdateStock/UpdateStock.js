@@ -12,17 +12,19 @@ const UpdateStock = () => {
       const { data } = await axios.get(url);
       setProduct(data.data);
     })();
-  }, []);
+  }, [product]);
   const { name, price, quantity, supplier, description, img } = product;
 
-  const handledeliver = () => {
-    const url = `http://localhost:5000/products?id=${id}&quantity=${
-      quantity - 1
-    }`;
-    const { data } = axios.put(url, {
-      quantity: quantity - 1,
-    });
+  const handledeliver = async () => {
+    let newQuantity = quantity - 1;
+    const details = { newQuantity, id };
+    const url = `http://localhost:5000/products`;
+    const { data } = await axios.put(url, details);
     console.log(data);
+    if (!data.success) {
+      toast.error(data.error);
+    }
+    toast.success("Delivered successfully");
   };
   return (
     <div className="p-5">
@@ -35,7 +37,7 @@ const UpdateStock = () => {
             src={img}
             alt=""
           />
-          <div className="flex flex-col justify-between p-4 leading-normal">
+          <div className="flex flex-col justify-between px-4 leading-normal">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {name}
             </h5>
@@ -49,9 +51,11 @@ const UpdateStock = () => {
               Supplier: {supplier}
             </p>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              {description}
+              <small>{description}</small>
             </p>
-            <button className="btn hero-btn">Delivered</button>
+            <button onClick={handledeliver} className="btn hero-btn">
+              Delivered
+            </button>
           </div>
         </div>
       </div>
