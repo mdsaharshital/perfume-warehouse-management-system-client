@@ -1,15 +1,12 @@
 .header-container{
-  display: flex;
   position: relative;
   z-index: 999;
 }
   .navbar-text{
     font-size: 12px;
     font-weight: bold;
-    /* text-align: center; */
   }
   .nav-menu {
-    /* background-color: #060b26; */
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -32,7 +29,12 @@
     left: 0;
     transition: 350ms;
   }
-  
+  .nav-menu-items {
+    background: var(--yellow);
+    padding: 0;
+    width: 100%;
+    margin: 0;
+  }
   .nav-text {
     display: flex;
     justify-content: start;
@@ -42,6 +44,7 @@
     list-style: none;
     height: 60px;
     color: black;
+    white-space: nowrap;
   }
   
   .nav-text a {
@@ -62,17 +65,11 @@
     border-right: 4px solid black;
   }
   
-  .nav-menu-items {
-    background: var(--yellow);
-    padding: 0;
-    width: 100%;
-    margin: 0;
-  }
+  
   .nav-menu-flex{
     margin: 0;
     display: flex;
     align-items: center;
-    /* justify-content: center; */
   }
   .nav-menu-flex p{
     margin: 1rem;

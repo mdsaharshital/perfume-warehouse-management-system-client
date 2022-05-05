@@ -4,10 +4,9 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
-import { IconContext } from "react-icons";
 import "./Header.css";
 
-const Header = ({ children }) => {
+const Header = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const showSidebar = () => setSidebarOpen(!isSidebarOpen);
@@ -63,7 +62,6 @@ const Header = ({ children }) => {
             </ul>
           </nav>
         </div>
-        <main>{children}</main>
       </div>
     </>
   );
