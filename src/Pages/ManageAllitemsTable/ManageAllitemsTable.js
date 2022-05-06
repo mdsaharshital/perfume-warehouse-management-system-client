@@ -8,7 +8,7 @@ const ManageAllitemsTable = ({ product }) => {
   const handleDelete = async (id) => {
     const confrimDelete = window.confirm("Are you sure ?");
     if (confrimDelete) {
-      console.log("id", id);
+      // console.log("id", id);
       // DELETE request using fetch with async/await
       function deletePost() {
         fetch(`http://localhost:5000/product/${id}`, {
@@ -16,9 +16,11 @@ const ManageAllitemsTable = ({ product }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            if (data.deletedCount > 0) {
-              toast(data);
+            console.log(data);
+            if (data.success) {
+              toast.error(data.error);
             }
+            toast.success(data.message);
           });
       }
 
