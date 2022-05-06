@@ -1,8 +1,15 @@
 import React from "react";
 import "./ManageAllitemsTable.css";
 import { toast } from "react-toastify";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
+import Loading from "../Shared/Loading/Loading";
 
 const ManageAllitemsTable = ({ product }) => {
+  const [, loading] = useAuthState(auth);
+  if (loading) {
+    return <Loading />;
+  }
   const { _id, name, supplier, quantity, price } = product;
 
   const handleDelete = async (id) => {

@@ -3,10 +3,17 @@ import "./ProductCards.css";
 import useProducts from "./../../../hooks/useProducts";
 import ProductCardDetails from "../ProductCardDetails/ProductCardDetails";
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import Loading from "../../Shared/Loading/Loading";
 
 const ProductCards = () => {
   const [products, setProducts] = useProducts();
   const navigate = useNavigate();
+  const [user, loading] = useAuthState(auth);
+  if (loading || !products) {
+    return <Loading />;
+  }
 
   return (
     <div className="">
