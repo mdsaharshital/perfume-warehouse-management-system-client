@@ -1,13 +1,18 @@
 import React from "react";
 import useProducts from "../../hooks/useProducts";
 import ManageAllitemsTable from "../ManageAllitemsTable/ManageAllitemsTable";
+import { useNavigate } from 'react-router-dom';
 
 const ManageInventory = () => {
-  const [products, setProducts] = useProducts();
+  const [products] = useProducts();
+  const navigate = useNavigate()
   return (
     <div>
       <h1 className="text-center py-4">Manage inventory</h1>
       <h2 className="text-center my-2">Total Products : {products.length}</h2>
+      <button onClick={()=>navigate('/addnewitems')} className="btn hero-btn my-3 d-block mx-auto">
+        Add new items
+      </button>
 
       <div className="col-10 col-md-8 col-lg-8 my-4 mx-auto">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

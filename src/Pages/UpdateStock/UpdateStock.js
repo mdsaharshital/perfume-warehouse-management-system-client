@@ -43,6 +43,7 @@ const UpdateStock = () => {
     let newQuantity = parseInt(quantity) + restockNumber;
     let msg = true;
     manageQuantity(newQuantity, id, msg);
+    e.target.reset();
   };
   return (
     <div className="p-5">
