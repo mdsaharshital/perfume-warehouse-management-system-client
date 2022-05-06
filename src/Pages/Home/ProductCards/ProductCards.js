@@ -2,9 +2,11 @@ import React from "react";
 import "./ProductCards.css";
 import useProducts from "./../../../hooks/useProducts";
 import ProductCardDetails from "../ProductCardDetails/ProductCardDetails";
+import { useNavigate } from "react-router-dom";
 
 const ProductCards = () => {
   const [products, setProducts] = useProducts();
+  const navigate = useNavigate();
 
   return (
     <div className="">
@@ -16,6 +18,12 @@ const ProductCards = () => {
           ))
           .slice(0, 6)}
       </div>
+      <button
+        onClick={() => navigate("/manage")}
+        className="btn hero-btn d-block mx-auto my-3"
+      >
+        Manage inventories
+      </button>
     </div>
   );
 };

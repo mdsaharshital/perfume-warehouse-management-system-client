@@ -4,6 +4,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
+import { MdInventory2 } from "react-icons/md";
 import "./Header.css";
 import CustomLink from "../CustomLink/CustomLink";
 
@@ -37,11 +38,9 @@ const Header = () => {
                 </CustomLink>
               </li>
               <li className="nav-text">
-                <CustomLink to="/reports" className="nav-menu-flex">
-                  <IoIcons.IoIosPaper
-                    style={{ color: "black", fontSize: "26px" }}
-                  />
-                  {isSidebarOpen || <p>Reports</p>}
+                <CustomLink to="/manage" className="nav-menu-flex">
+                  <MdInventory2 style={{ color: "black", fontSize: "26px" }} />
+                  {isSidebarOpen || <p>Manage</p>}
                 </CustomLink>
               </li>
               <li className="nav-text">

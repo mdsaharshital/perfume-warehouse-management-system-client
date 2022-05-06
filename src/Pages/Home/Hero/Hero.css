@@ -4,6 +4,7 @@
 .hero-btn{
     background: var(--yellow);
     font-weight: bold;
+    box-shadow: var(--boxShadow);
 }
 .banner{
     width: 100vw;

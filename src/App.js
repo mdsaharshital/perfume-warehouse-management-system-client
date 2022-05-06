@@ -5,6 +5,7 @@ import Footer from "./Pages/Shared/Footer/Footer";
 import Header from "./Pages/Shared/Header/Header";
 import { ToastContainer } from "react-toastify";
 import UpdateStock from "./Pages/UpdateStock/UpdateStock";
+import ManageInventory from "./Pages/ManageInventory/ManageInventory";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/manage" element={<ManageInventory />}></Route>
         <Route path="/inventory/:id" element={<UpdateStock />}></Route>
       </Routes>
       <Footer />

@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const UpdateStock = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = `http://localhost:5000/products/${id}`;
@@ -74,9 +75,17 @@ const UpdateStock = () => {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center my-4">
-        <button onClick={handledeliver} className="btn hero-btn me-1">
-          Give Delivery
-        </button>
+        <div className="">
+          <button onClick={handledeliver} className="btn hero-btn me-1">
+            Give Delivery
+          </button>
+          <button
+            onClick={() => navigate("/manage")}
+            className="btn hero-btn ms-1"
+          >
+            Manage inventory
+          </button>
+        </div>
         <form onSubmit={addQuantity} className="my-3">
           <input
             type="number"
