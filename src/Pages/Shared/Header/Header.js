@@ -1,14 +1,20 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import * as IoIcons from "react-icons/io";
+import { BiLogOut } from "react-icons/bi";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { MdInventory2 } from "react-icons/md";
 import "./Header.css";
 import CustomLink from "../CustomLink/CustomLink";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import { signOut } from "firebase/auth";
 
 const Header = () => {
+  const [user] = useAuthState(auth);
+  const logout = () => {
+    signOut(auth);
+  };
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
   const showSidebar = () => setSidebarOpen(!isSidebarOpen);
@@ -44,21 +50,30 @@ const Header = () => {
                 </CustomLink>
               </li>
               <li className="nav-text">
-                <CustomLink to="/products" className="nav-menu-flex">
+                <CustomLink to="/addnewitems" className="nav-menu-flex">
                   <FaIcons.FaCartPlus
                     style={{ color: "black", fontSize: "26px" }}
                   />
-                  {isSidebarOpen || <p>Products</p>}
+                  {isSidebarOpen || <p>Add Items</p>}
                 </CustomLink>
               </li>
-              <li className="nav-text">
-                <CustomLink to="/message" className="nav-menu-flex">
-                  <IoIcons.IoIosPaper
-                    style={{ color: "black", fontSize: "26px" }}
-                  />
-                  {isSidebarOpen || <p>Message</p>}
-                </CustomLink>
-              </li>
+              {user ? (
+                <li onClick={logout} className="nav-text">
+                  <CustomLink to="/" className="nav-menu-flex">
+                    <BiLogOut style={{ color: "black", fontSize: "26px" }} />
+                    {isSidebarOpen || <p>Log Out</p>}
+                  </CustomLink>
+                </li>
+              ) : (
+                <li className="nav-text">
+                  <CustomLink to="/signin" className="nav-menu-flex">
+                    <FaIcons.FaUserMinus
+                      style={{ color: "black", fontSize: "26px" }}
+                    />
+                    {isSidebarOpen || <p>Log In</p>}
+                  </CustomLink>
+                </li>
+              )}
             </ul>
           </nav>
         </div>
