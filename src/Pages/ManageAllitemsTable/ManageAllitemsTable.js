@@ -1,10 +1,29 @@
 import React from "react";
 import "./ManageAllitemsTable.css";
+import { toast } from "react-toastify";
 
 const ManageAllitemsTable = ({ product }) => {
   const { _id, name, supplier, quantity, price } = product;
-  const handleDelete = (id) => {
-    console.log("id", id);
+
+  const handleDelete = async (id) => {
+    const confrimDelete = window.confirm("Are you sure ?");
+    if (confrimDelete) {
+      console.log("id", id);
+      // DELETE request using fetch with async/await
+      function deletePost() {
+        fetch(`http://localhost:5000/product/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              toast(data);
+            }
+          });
+      }
+
+      deletePost();
+    }
   };
   return (
     <>
