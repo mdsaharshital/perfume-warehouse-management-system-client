@@ -4,11 +4,14 @@ import {
   useAuthState,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const [getUser] = useAuthState(auth);
   const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
@@ -23,7 +26,7 @@ const SignIn = () => {
   };
 
   if (getUser) {
-    navigate("/");
+    navigate(from, { replace: true });
   }
   if (loading) {
     return <p>Loading....</p>;

@@ -67,7 +67,7 @@ const Header = () => {
               ) : (
                 <li className="nav-text">
                   <CustomLink to="/signin" className="nav-menu-flex">
-                    <FaIcons.FaUserMinus
+                    <FaIcons.FaUserPlus
                       style={{ color: "black", fontSize: "26px" }}
                     />
                     {isSidebarOpen || <p>Log In</p>}
