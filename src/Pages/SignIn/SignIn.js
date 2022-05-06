@@ -5,6 +5,7 @@ import {
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Loading from "../Shared/Loading/Loading";
 
 const SignIn = () => {
   const [getUser] = useAuthState(auth);
@@ -29,7 +30,7 @@ const SignIn = () => {
     navigate(from, { replace: true });
   }
   if (loading) {
-    return <p>Loading....</p>;
+    return <Loading />;
   }
   return (
     <div className="py-5">

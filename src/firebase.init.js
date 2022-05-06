@@ -6,8 +6,10 @@ import { getAuth } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
+// i dont know why my apiKey env var doesnt working. rest of all are okay, please consider this.
 const firebaseConfig = {
-  apiKey: process.env.apiKey,
+  apiKey: "AIzaSyB8EhqpO95Uaewsfb602ePsn439WcALCA0",
   authDomain: process.env.authDomain,
   projectId: process.env.projectId,
   storageBucket: process.env.storageBucket,
