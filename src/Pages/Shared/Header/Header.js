@@ -9,9 +9,11 @@ import CustomLink from "../CustomLink/CustomLink";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
   const logout = () => {
     signOut(auth);
   };
@@ -43,26 +45,47 @@ const Header = () => {
                   {isSidebarOpen || <p>Home</p>}
                 </CustomLink>
               </li>
-              <li className="nav-text">
-                <CustomLink to="/manage" className="nav-menu-flex">
-                  <MdInventory2 style={{ color: "black", fontSize: "26px" }} />
-                  {isSidebarOpen || <p>Manage</p>}
-                </CustomLink>
-              </li>
-              <li className="nav-text">
-                <CustomLink to="/addnewitems" className="nav-menu-flex">
-                  <FaIcons.FaCartPlus
-                    style={{ color: "black", fontSize: "26px" }}
-                  />
-                  {isSidebarOpen || <p>Add Items</p>}
-                </CustomLink>
-              </li>
+              {user && (
+                <>
+                  <li className="nav-text">
+                    <CustomLink to="/manage" className="nav-menu-flex">
+                      <MdInventory2
+                        style={{ color: "black", fontSize: "26px" }}
+                      />
+                      {isSidebarOpen || <p>Manage</p>}
+                    </CustomLink>
+                  </li>
+                  <li className="nav-text">
+                    <CustomLink to="/myitems" className="nav-menu-flex">
+                      <FaIcons.FaLuggageCart
+                        style={{ color: "black", fontSize: "26px" }}
+                      />
+                      {isSidebarOpen || <p>My Items</p>}
+                    </CustomLink>
+                  </li>
+                  <li className="nav-text">
+                    <CustomLink to="/addnewitems" className="nav-menu-flex">
+                      <FaIcons.FaCartPlus
+                        style={{ color: "black", fontSize: "26px" }}
+                      />
+                      {isSidebarOpen || <p>Add Items</p>}
+                    </CustomLink>
+                  </li>
+                </>
+              )}
+
               {user ? (
-                <li onClick={logout} className="nav-text">
-                  <CustomLink to="/" className="nav-menu-flex">
+                <li
+                  onClick={() => {
+                    logout();
+                    navigate("/");
+                  }}
+                  className="nav-text"
+                >
+                  <span className="nav-menu-flex special-span">
                     <BiLogOut style={{ color: "black", fontSize: "26px" }} />
                     {isSidebarOpen || <p>Log Out</p>}
-                  </CustomLink>
+                  </span>
                 </li>
               ) : (
                 <li className="nav-text">
