@@ -5,6 +5,7 @@ import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import "./Header.css";
+import CustomLink from "../CustomLink/CustomLink";
 
 const Header = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -20,44 +21,44 @@ const Header = () => {
                 {isSidebarOpen || (
                   <h1 className="navbar-text">Perfume Warehouse</h1>
                 )}
-                <Link to="#" className="">
+                <div className="cursor-pointer">
                   <HiOutlineMenuAlt1
                     style={{ color: "black" }}
                     onClick={showSidebar}
                   />
-                </Link>
+                </div>
               </li>
               <li className="nav-text">
-                <Link to="/" className="nav-menu-flex">
+                <CustomLink to="/" className="nav-menu-flex">
                   <AiIcons.AiFillHome
-                    style={{ color: "black", marginRight: "" }}
+                    style={{ color: "black", fontSize: "26px" }}
                   />
                   {isSidebarOpen || <p>Home</p>}
-                </Link>
+                </CustomLink>
               </li>
               <li className="nav-text">
-                <Link to="/" className="nav-menu-flex">
+                <CustomLink to="/reports" className="nav-menu-flex">
                   <IoIcons.IoIosPaper
-                    style={{ color: "black", marginRight: "" }}
+                    style={{ color: "black", fontSize: "26px" }}
                   />
                   {isSidebarOpen || <p>Reports</p>}
-                </Link>
+                </CustomLink>
               </li>
               <li className="nav-text">
-                <Link to="/" className="nav-menu-flex">
+                <CustomLink to="/products" className="nav-menu-flex">
                   <FaIcons.FaCartPlus
-                    style={{ color: "black", marginRight: "" }}
+                    style={{ color: "black", fontSize: "26px" }}
                   />
                   {isSidebarOpen || <p>Products</p>}
-                </Link>
+                </CustomLink>
               </li>
               <li className="nav-text">
-                <Link to="/" className="nav-menu-flex">
+                <CustomLink to="/message" className="nav-menu-flex">
                   <IoIcons.IoIosPaper
-                    style={{ color: "black", marginRight: "" }}
+                    style={{ color: "black", fontSize: "26px" }}
                   />
                   {isSidebarOpen || <p>Message</p>}
-                </Link>
+                </CustomLink>
               </li>
             </ul>
           </nav>
