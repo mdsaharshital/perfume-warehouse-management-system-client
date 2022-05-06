@@ -1,9 +1,14 @@
 import React from "react";
 import auth from "./../../firebase.init";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
+  const [getUser] = useAuthState(auth);
+  const navigate = useNavigate();
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
@@ -13,9 +18,16 @@ const SignIn = () => {
     const password = e.target.password.value;
     const user = { email, password };
     console.log(user);
-    // await signInWithEmailAndPassword(email, password);
+    await signInWithEmailAndPassword(email, password);
     e.target.reset();
   };
+
+  if (getUser) {
+    navigate("/");
+  }
+  if (loading) {
+    return <p>Loading....</p>;
+  }
   return (
     <div className="py-5">
       <h1 className="text-center my-2">Log In Here</h1>
@@ -27,7 +39,7 @@ const SignIn = () => {
               name="email"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
-              required=""
+              required
             />
             <label
               htmlFor="floating_email"
@@ -43,7 +55,7 @@ const SignIn = () => {
               id="floating_password"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
-              required=""
+              required
             />
             <label
               htmlFor="floating_password"
@@ -56,7 +68,7 @@ const SignIn = () => {
             type="submit"
             className="btn hero-btn mb-3 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Add to inventory
+            Log in
           </button>
           <p>
             <small>
@@ -67,6 +79,11 @@ const SignIn = () => {
               </Link>
             </small>
           </p>
+          {error && (
+            <p>
+              <small className="text-danger">{error.message}</small>
+            </p>
+          )}
         </form>
       </div>
     </div>
