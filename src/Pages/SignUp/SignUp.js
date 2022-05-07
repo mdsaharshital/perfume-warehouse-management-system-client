@@ -5,11 +5,15 @@ import {
   useCreateUserWithEmailAndPassword,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating] = useUpdateProfile(auth);
@@ -26,7 +30,7 @@ const SignUp = () => {
     e.target.reset();
   };
   if (user) {
-    navigate("/");
+    navigate(from, { replace: true });
   }
   if (loading || updating) {
     return <Loading />;
@@ -106,6 +110,7 @@ const SignUp = () => {
             </p>
           )}
         </form>
+        <SocialLogin />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import {
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignIn = () => {
   const [getUser] = useAuthState(auth);
@@ -89,6 +90,7 @@ const SignIn = () => {
             </p>
           )}
         </form>
+        <SocialLogin />
       </div>
     </div>
   );
