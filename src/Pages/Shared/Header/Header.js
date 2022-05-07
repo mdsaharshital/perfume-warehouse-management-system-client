@@ -17,17 +17,17 @@ const Header = () => {
   const logout = () => {
     signOut(auth);
   };
-  const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const [isSidebarClosed, setSidebarClosed] = useState(true);
 
-  const showSidebar = () => setSidebarOpen(!isSidebarOpen);
+  const showSidebar = () => setSidebarClosed(!isSidebarClosed);
   return (
     <>
       <div className="header-container">
         <div className="navmenu-full">
-          <nav className={isSidebarOpen ? "nav-menu active" : "nav-menu"}>
+          <nav className={isSidebarClosed ? "nav-menu active" : "nav-menu"}>
             <ul className="nav-menu-items">
               <li className="navbar-toggle">
-                {isSidebarOpen || (
+                {isSidebarClosed || (
                   <h1 className="navbar-text">Perfume Warehouse</h1>
                 )}
                 <div className="cursor-pointer">
@@ -42,7 +42,7 @@ const Header = () => {
                   <AiIcons.AiFillHome
                     style={{ color: "black", fontSize: "26px" }}
                   />
-                  {isSidebarOpen || <p>Home</p>}
+                  {isSidebarClosed || <p>Home</p>}
                 </CustomLink>
               </li>
               {user && (
@@ -52,7 +52,7 @@ const Header = () => {
                       <MdInventory2
                         style={{ color: "black", fontSize: "26px" }}
                       />
-                      {isSidebarOpen || <p>Manage</p>}
+                      {isSidebarClosed || <p>Manage</p>}
                     </CustomLink>
                   </li>
                   <li className="nav-text">
@@ -60,7 +60,7 @@ const Header = () => {
                       <FaIcons.FaLuggageCart
                         style={{ color: "black", fontSize: "26px" }}
                       />
-                      {isSidebarOpen || <p>My Items</p>}
+                      {isSidebarClosed || <p>My Items</p>}
                     </CustomLink>
                   </li>
                   <li className="nav-text">
@@ -68,12 +68,19 @@ const Header = () => {
                       <FaIcons.FaCartPlus
                         style={{ color: "black", fontSize: "26px" }}
                       />
-                      {isSidebarOpen || <p>Add Items</p>}
+                      {isSidebarClosed || <p>Add Items</p>}
                     </CustomLink>
                   </li>
                 </>
               )}
-
+              <li className="nav-text">
+                <CustomLink to="/blogs" className="nav-menu-flex">
+                  <AiIcons.AiFillMessage
+                    style={{ color: "black", fontSize: "26px" }}
+                  />
+                  {isSidebarClosed || <p>Blogs</p>}
+                </CustomLink>
+              </li>
               {user ? (
                 <li
                   onClick={() => {
@@ -84,7 +91,7 @@ const Header = () => {
                 >
                   <span className="nav-menu-flex special-span">
                     <BiLogOut style={{ color: "black", fontSize: "26px" }} />
-                    {isSidebarOpen || <p>Log Out</p>}
+                    {isSidebarClosed || <p>Log Out</p>}
                   </span>
                 </li>
               ) : (
@@ -93,7 +100,7 @@ const Header = () => {
                     <FaIcons.FaUserPlus
                       style={{ color: "black", fontSize: "26px" }}
                     />
-                    {isSidebarOpen || <p>Log In</p>}
+                    {isSidebarClosed || <p>Log In</p>}
                   </CustomLink>
                 </li>
               )}
