@@ -15,13 +15,14 @@ const UpdateStock = () => {
       setProduct(data.data);
     })();
   }, [product]);
-  const { name, price, quantity, supplier, description, img } = product;
-  // common function to manage quantity
-  const manageQuantity = async (newQuantity, id, msg) => {
-    const details = { newQuantity, id };
+  const { name, price, quantity, sold, supplier, description, img } = product;
+  // common function to decrease quantity and increase sold
+  const manageQuantitySold = async (newQuantity, newSold, id, msg) => {
+    const details = { newQuantity, newSold, id };
     const url = `http://localhost:5000/products`;
     const { data } = await axios.put(url, details);
     console.log(data);
+    //
     if (!data.success) {
       return toast.error(data.error);
     }
@@ -30,11 +31,24 @@ const UpdateStock = () => {
     }
     return toast.success("Delivered successfully");
   };
+  // manage add quantity
+  // const manageAddQuantity = async (newQuantity, id, msg) => {
+  //   const details = { newQuantity, id };
+  //   const url = `http://localhost:5000/products`;
+  //   const { data } = await axios.put(url, details);
+  //   console.log(data);
+  //   giveMsg(data, msg);
+  // };
+  //give toast msg
+  // const giveMsg = (data, msg) => {
+
+  // };
   // handle delivery
   const handledeliver = async () => {
     let newQuantity = quantity - 1;
+    let newSold = parseInt(sold) + 1;
     let msg = false;
-    manageQuantity(newQuantity, id, msg);
+    manageQuantitySold(newQuantity, newSold, id, msg);
   };
   // handle add quantity from input
   const addQuantity = (e) => {
@@ -42,7 +56,8 @@ const UpdateStock = () => {
     const restockNumber = parseInt(e.target.quantity.value);
     let newQuantity = parseInt(quantity) + restockNumber;
     let msg = true;
-    manageQuantity(newQuantity, id, msg);
+    let newSold = sold;
+    manageQuantitySold(newQuantity, newSold, id, msg);
     e.target.reset();
   };
   return (
@@ -64,7 +79,10 @@ const UpdateStock = () => {
               Price: ${price}
             </p>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              Quantity {quantity}
+              Quantity : {quantity}
+            </p>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              Sold : {sold}
             </p>
             <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
               Supplier: {supplier}

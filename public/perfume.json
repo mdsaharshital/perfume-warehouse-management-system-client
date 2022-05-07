@@ -4,6 +4,7 @@
         "name": "N-5 CHANEL",
         "price": "30",
         "quantity": "14",
+        "sold": "0",
         "supplier": "Tanvir co.",
         "description": "La italia level perfume for woen with strong fragnance.",
         "img": "https://i.ibb.co/kKc2m9j/img-1.jpg"
@@ -12,6 +13,7 @@
         "name": "COCO",
         "price": "10",
         "quantity": "15",
+        "sold": "0",
         "supplier": "NOIR",
         "description": "A perfect women fragnance a manifestation of optimism and absolute happiness.",
         "img": "https://i.ibb.co/p1cGxy3/img-2.jpg"
@@ -20,6 +22,7 @@
         "name": "Parfuma da costa",
         "price": "15",
         "quantity": "16",
+        "sold": "0",
         "supplier": "Mehe Co.",
         "description": "“No elegance is possible without perfume. It is the unseen, unforgettable, ultimate accessory.",
         "img": "https://i.ibb.co/sbCrWcY/img-3.jpg"
@@ -28,6 +31,7 @@
         "name": "Seoul 532-8",
         "price": "18",
         "quantity": "17",
+        "sold": "0",
         "supplier": "ZARA",
         "description": "Long after one has forgotten what a woman wore, the memory of her perfume lingers",
         "img": "https://i.ibb.co/SdsTQxq/img-4.jpg"
@@ -36,6 +40,7 @@
         "name": "Chance",
         "price": "10",
         "quantity": "18",
+        "sold": "0",
         "supplier": "Chanel",
         "description": "Ladies, a man will never remember your handbag, but he will remember your perfume.",
         "img": "https://i.ibb.co/x5j6ZL2/img-5.jpg"
@@ -44,6 +49,7 @@
         "name": "YesSaintLaurent",
         "price": "30",
         "quantity": "19",
+        "sold": "0",
         "supplier": "Laurant",
         "description": "Until I was a teenager, I used red pokeberries for lipstick and a burnt matchstick for eyeliner. I used honeysuckle for perfume.",
         "img": "https://i.ibb.co/hCqprvS/img-6.jpg"
@@ -52,6 +58,7 @@
         "name": "Di Gioia",
         "price": "19",
         "quantity": "22",
+        "sold": "0",
         "supplier": "Armani",
         "description": "I used red pokeberries for lipstick and a burnt matchstick for eyeliner. I used honeysuckle for perfume.",
         "img": "https://i.ibb.co/dkNrYW9/img-7.jpg"
@@ -60,6 +67,7 @@
         "name": "Jo Malone",
         "price": "21",
         "quantity": "24",
+        "sold": "0",
         "supplier": "Duz co.",
         "description": "Ladies, a man will never remember your handbag, but he will remember your perfume.",
         "img": "https://i.ibb.co/kHhMT6m/img-8.jpg"
@@ -68,16 +76,45 @@
         "name": "Lampe Berger",
         "price": "33",
         "quantity": "16",
+        "sold": "0",
         "supplier": "Da Paris Co.",
         "description": "Long after one has forgotten what a woman wore, the memory of her perfume lingers.",
         "img": "https://i.ibb.co/FBBMKN6/img-9.jpg"
     },
     {
         "name": "Ice Cool",
-        "price": "12",
-        "quantity": "45",
+        "price": "11",
+        "quantity": "21",
+        "sold": "0",
         "supplier": "Eu Da Parisa",
         "description": "I used red pokeberries for lipstick and a burnt matchstick for eyeliner. I used honeysuckle for perfume.",
         "img": "https://i.ibb.co/QQz6gVt/img-10.jpg"
+    },
+    {
+        "name": "Fogg Red",
+        "price": "14",
+        "quantity": "12",
+        "sold": "0",
+        "supplier": "Eu Da ",
+        "description": "I used red pokeberries for lipstick and a burnt matchstick for eyeliner. I used honeysuckle for perfume.",
+        "img": "https://i.ibb.co/dkNrYW9/img-7.jpg"
+    },
+    {
+        "name": "Ice Cool Men",
+        "price": "21",
+        "quantity": "12",
+        "sold": "0",
+        "supplier": "Eu Da Parisa",
+        "description": "I used red pokeberries for lipstick and a burnt matchstick for eyeliner. I used honeysuckle for perfume.",
+        "img": "https://i.ibb.co/QQz6gVt/img-10.jpg"
+    },
+    {
+        "name": "Fogg Green",
+        "price": "11",
+        "quantity": "41",
+        "sold": "0",
+        "supplier": "Eu Da Parisa",
+        "description": "I used red pokeberries for lipstick and a burnt matchstick for eyeliner. I used honeysuckle for perfume.",
+        "img": "https://i.ibb.co/dkNrYW9/img-7.jpg"
     }
 ]
