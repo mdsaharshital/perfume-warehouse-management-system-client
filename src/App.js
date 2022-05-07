@@ -42,9 +42,16 @@ function App() {
             </RequireAuth>
           }
         ></Route>
+        <Route
+          path="/inventory/:id"
+          element={
+            <RequireAuth>
+              <UpdateStock />
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/signin" element={<SignIn />}></Route>
-        <Route path="/inventory/:id" element={<UpdateStock />}></Route>
       </Routes>
       <Footer />
       <ToastContainer />

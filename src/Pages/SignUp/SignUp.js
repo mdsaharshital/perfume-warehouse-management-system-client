@@ -3,11 +3,13 @@ import auth from "./../../firebase.init";
 import {
   useAuthState,
   useCreateUserWithEmailAndPassword,
+  useSendEmailVerification,
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,6 +19,10 @@ const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating] = useUpdateProfile(auth);
+
+  const [sendEmailVerification, sending, veriError] =
+    useSendEmailVerification(auth);
+
   const [getUser] = useAuthState(auth);
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -27,9 +33,11 @@ const SignUp = () => {
     console.log(user);
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName });
+    await sendEmailVerification();
+    toast.success("Email verification mail has been sent");
     e.target.reset();
   };
-  if (user) {
+  if (getUser) {
     navigate(from, { replace: true });
   }
   if (loading || updating) {
