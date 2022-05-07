@@ -8,9 +8,9 @@ import auth from "../../../firebase.init";
 import Loading from "../../Shared/Loading/Loading";
 
 const ProductCards = () => {
-  const [products, setProducts] = useProducts();
+  const [products] = useProducts();
   const navigate = useNavigate();
-  const [user, loading] = useAuthState(auth);
+  const [, loading] = useAuthState(auth);
   if (loading || !products) {
     return <Loading />;
   }

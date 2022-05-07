@@ -16,12 +16,11 @@ const SignUp = () => {
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, , loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating] = useUpdateProfile(auth);
 
-  const [sendEmailVerification, sending, veriError] =
-    useSendEmailVerification(auth);
+  const [sendEmailVerification, sending] = useSendEmailVerification(auth);
 
   const [getUser] = useAuthState(auth);
   const handleSignUp = async (e) => {

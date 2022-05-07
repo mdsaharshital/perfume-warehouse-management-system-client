@@ -1,13 +1,9 @@
-.hero-container{
-    width: 100vw;
-}
 .hero-btn{
     background: var(--yellow);
     font-weight: bold;
     box-shadow: var(--boxShadow);
 }
 .banner{
-    width: 100vw;
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(../../../images/banner.jpg);
