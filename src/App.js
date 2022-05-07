@@ -11,6 +11,7 @@ import SignUp from "./Pages/SignUp/SignUp";
 import SignIn from "./Pages/SignIn/SignIn";
 import RequireAuth from "./Pages/Shared/RequireAuth/RequireAuth";
 import MyItems from "./Pages/MyItems/MyItems";
+import NotFound from "./Pages/Shared/NotFound/NotFound";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         ></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/signin" element={<SignIn />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
       <Footer />
       <ToastContainer />
