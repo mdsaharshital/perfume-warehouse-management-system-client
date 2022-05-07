@@ -40,7 +40,7 @@ const SignUp = () => {
   if (getUser) {
     navigate(from, { replace: true });
   }
-  if (loading || updating) {
+  if (loading || updating || sending) {
     return <Loading />;
   }
   return (

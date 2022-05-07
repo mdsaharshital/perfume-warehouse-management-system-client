@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import auth from "./../../firebase.init";
 import {
   useAuthState,
+  useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import { toast } from "react-toastify";
+import { async } from "@firebase/util";
 
 const SignIn = () => {
+  const [email, setEmail] = useState("");
   const [getUser] = useAuthState(auth);
   const navigate = useNavigate();
   const location = useLocation();
@@ -16,6 +20,9 @@ const SignIn = () => {
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
+
+  const [sendPasswordResetEmail, sending, resetError] =
+    useSendPasswordResetEmail(auth);
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -27,10 +34,19 @@ const SignIn = () => {
     e.target.reset();
   };
 
+  const handlePassReset = async () => {
+    if (email) {
+      await sendPasswordResetEmail(email);
+      toast.success("Reset password email has been sent");
+    } else {
+      toast.error("Type your email first");
+    }
+  };
+
   if (getUser) {
     navigate(from, { replace: true });
   }
-  if (loading) {
+  if (loading || sending) {
     return <Loading />;
   }
   return (
@@ -40,6 +56,7 @@ const SignIn = () => {
         <form onSubmit={handleSignUp}>
           <div className="relative z-0 w-full mb-6 group">
             <input
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               name="email"
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent  border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -84,9 +101,21 @@ const SignIn = () => {
               </Link>
             </small>
           </p>
+          <p>
+            <small>
+              Forgot password?{" "}
+              <span
+                onClick={handlePassReset}
+                className="text-red-500 cursor-pointer"
+              >
+                {" "}
+                Click here
+              </span>
+            </small>
+          </p>
           {error && (
             <p>
-              <small className="text-danger">{error.message}</small>
+              <small className="text-danger">{error?.message}</small>
             </p>
           )}
         </form>
