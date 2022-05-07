@@ -21,7 +21,6 @@ const UpdateStock = () => {
     const details = { newQuantity, newSold, id };
     const url = `http://localhost:5000/products`;
     const { data } = await axios.put(url, details);
-    console.log(data);
     //
     if (!data.success) {
       return toast.error(data.error);
@@ -31,18 +30,6 @@ const UpdateStock = () => {
     }
     return toast.success("Delivered successfully");
   };
-  // manage add quantity
-  // const manageAddQuantity = async (newQuantity, id, msg) => {
-  //   const details = { newQuantity, id };
-  //   const url = `http://localhost:5000/products`;
-  //   const { data } = await axios.put(url, details);
-  //   console.log(data);
-  //   giveMsg(data, msg);
-  // };
-  //give toast msg
-  // const giveMsg = (data, msg) => {
-
-  // };
   // handle delivery
   const handledeliver = async () => {
     let newQuantity = quantity - 1;
