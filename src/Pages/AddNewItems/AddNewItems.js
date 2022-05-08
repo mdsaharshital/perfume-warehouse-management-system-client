@@ -25,7 +25,7 @@ const AddNewItems = () => {
     };
     console.log(newProduct);
     const { data } = await axios.post(
-      "http://localhost:5000/products",
+      "https://gentle-chamber-62295.herokuapp.com/products",
       newProduct
     );
     if (!data.success) {

@@ -6,7 +6,9 @@ const useProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await axios.get("http://localhost:5000/products");
+      const { data } = await axios.get(
+        "https://gentle-chamber-62295.herokuapp.com/products"
+      );
       if (!data.success) return toast.error(data.error);
       setProducts(data.data);
     };

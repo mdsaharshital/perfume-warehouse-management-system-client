@@ -9,7 +9,7 @@ const UpdateStock = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `http://localhost:5000/products/${id}`;
+    const url = `https://gentle-chamber-62295.herokuapp.com/products/${id}`;
     (async () => {
       const { data } = await axios.get(url);
       setProduct(data.data);
@@ -19,7 +19,7 @@ const UpdateStock = () => {
   // common function to decrease quantity and increase sold
   const manageQuantitySold = async (newQuantity, newSold, id, msg) => {
     const details = { newQuantity, newSold, id };
-    const url = `http://localhost:5000/products`;
+    const url = `https://gentle-chamber-62295.herokuapp.com/products`;
     const { data } = await axios.put(url, details);
     //
     if (!data.success) {

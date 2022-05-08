@@ -18,7 +18,7 @@ const ManageAllitemsTable = ({ product }) => {
       // console.log("id", id);
       // DELETE request using fetch with async/await
       function deletePost() {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://gentle-chamber-62295.herokuapp.com/product/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

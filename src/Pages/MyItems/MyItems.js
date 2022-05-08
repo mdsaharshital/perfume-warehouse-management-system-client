@@ -16,7 +16,7 @@ const MyItems = () => {
     const getProducts = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/myitems/${user.email}`,
+          `https://gentle-chamber-62295.herokuapp.com/myitems/${user.email}`,
           {
             headers: {
               authorization: `Bearer ${localStorage.getItem("accessToken")}`,
