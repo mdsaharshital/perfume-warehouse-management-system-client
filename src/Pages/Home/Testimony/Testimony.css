@@ -1,0 +1,9 @@
+.testi-title{
+    font-family: 'Beau Rivage', cursive;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 8px;
+}
+.card-container{
+    padding-top: 100px;
+}

@@ -59,7 +59,7 @@ const Analysis = () => {
 
   return (
     <div>
-      <h1 className="text-center my-5">Product analysis</h1>
+      <h1 className="text-center my-5 testi-title">Product analysis</h1>
       <div className="grid grid-cols-1 lg:grid-cols-2 mx-auto">
         <BarChart
           width={350}

@@ -4,17 +4,32 @@ import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import Loading from "../Shared/Loading/Loading";
+import useProducts from "../../hooks/useProducts";
 
 const ManageAllitemsTable = ({ product }) => {
+  const [products, setProducts] = useProducts();
   const [, loading] = useAuthState(auth);
   if (loading) {
     return <Loading />;
   }
   const { _id, name, supplier, quantity, price } = product;
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
     const confrimDelete = window.confirm("Are you sure ?");
     if (confrimDelete) {
+      // fetch(`https://gentle-chamber-62295.herokuapp.com/product/${id}`, {
+      //   method: "DELETE",
+      // })
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     // if (data.success) {
+      //     //   toast.error(data.error);
+      //     // }
+      //     const remaining = products.filter((p) => p._id !== id);
+      //     console.log(remaining);
+      //     setProducts(remaining);
+      //     toast.success(data.message);
+      //   });
       // console.log("id", id);
       // DELETE request using fetch with async/await
       function deletePost() {
@@ -23,10 +38,12 @@ const ManageAllitemsTable = ({ product }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.success) {
               toast.error(data.error);
             }
+            const remaining = products.filter((p) => p._id !== id);
+            console.log(remaining);
+            setProducts(remaining);
             toast.success(data.message);
           });
       }
