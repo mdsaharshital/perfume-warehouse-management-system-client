@@ -20,6 +20,7 @@ This is a fullstack project of inventory managemnet system where a owner and his
 
 ### Features
 
+- automatic logout for unauthorized token
 - Private route
 - conditional header menues
 - signin/signup feature using firebase

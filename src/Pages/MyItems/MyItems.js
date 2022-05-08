@@ -5,20 +5,37 @@ import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import ManageAllitemsTable from "../ManageAllitemsTable/ManageAllitemsTable";
 import Loading from "../Shared/Loading/Loading";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const MyItems = () => {
   const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
   const [myProducts, setMyProducts] = useState([]);
   useEffect(() => {
     const getProducts = async () => {
-      const { data } = await axios.get(
-        `http://localhost:5000/myproducts/${user.email}`
-      );
-      if (!data.success) return toast.error(data.error);
-      setMyProducts(data.data);
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5000/myitems/${user.email}`,
+          {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            },
+          }
+        );
+        if (!data.success) return toast.error(data.error);
+        setMyProducts(data.data);
+      } catch (error) {
+        console.log(error.message);
+        if (error.response.status === 401 || error.response.status === 403) {
+          toast.error("forbidden access");
+          signOut(auth);
+          navigate("/signin");
+        }
+      }
     };
     getProducts();
-  }, [myProducts]);
+  }, []);
   if (loading) {
     return <Loading />;
   }

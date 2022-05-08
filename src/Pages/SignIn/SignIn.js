@@ -9,6 +9,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -29,6 +30,9 @@ const SignIn = () => {
     const user = { email, password };
     console.log(user);
     await signInWithEmailAndPassword(email, password);
+    const { data } = await axios.post("http://localhost:5000/login", { email });
+
+    localStorage.setItem("accessToken", data.accessToken);
     e.target.reset();
   };
 
