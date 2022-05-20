@@ -6,8 +6,9 @@ import auth from "../../firebase.init";
 import Loading from "../Shared/Loading/Loading";
 import useProducts from "../../hooks/useProducts";
 
-const ManageAllitemsTable = ({ product }) => {
+const ManageAllitemsTable = ({ product, refetch }) => {
   const [products, setProducts] = useProducts();
+
   const [, loading] = useAuthState(auth);
   if (loading) {
     return <Loading />;
@@ -17,21 +18,6 @@ const ManageAllitemsTable = ({ product }) => {
   const handleDelete = (id) => {
     const confrimDelete = window.confirm("Are you sure ?");
     if (confrimDelete) {
-      //     // fetch(`https://gentle-chamber-62295.herokuapp.com/product/${id}`, {
-      //     //   method: "DELETE",
-      //     // })
-      //     //   .then((res) => res.json())
-      //     //   .then((data) => {
-      //     //     // if (data.success) {
-      //     //     //   toast.error(data.error);
-      //     //     // }
-      //     //     const remaining = products.filter((p) => p._id !== id);
-      //     //     console.log(remaining);
-      //     //     setProducts(remaining);
-      //     //     toast.success(data.message);
-      //     //   });
-      //     // console.log("id", id);
-      //     // DELETE request using fetch with async/await
       async function deletePost() {
         fetch(`https://gentle-chamber-62295.herokuapp.com/product/${id}`, {
           method: "DELETE",
@@ -44,6 +30,7 @@ const ManageAllitemsTable = ({ product }) => {
             const remaining = products.filter((p) => p._id !== id);
             console.log(remaining);
             setProducts(remaining);
+            refetch();
             toast.success(data.message);
           });
       }

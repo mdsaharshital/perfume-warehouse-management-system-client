@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
+  useAuthState,
   useSignInWithGithub,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -7,6 +8,7 @@ import { BsGithub, BsGoogle } from "react-icons/bs";
 import auth from "../../../firebase.init";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import axios from "axios";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
@@ -17,6 +19,21 @@ const SocialLogin = () => {
     useSignInWithGoogle(auth);
   const [signInWithGithub, GithubUser, GithubLoading, GithubError] =
     useSignInWithGithub(auth);
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      (async () => {
+        const email = user?.email;
+        const { data } = await axios.post(
+          "https://gentle-chamber-62295.herokuapp.com/login",
+          { email }
+        );
+        localStorage.setItem("accessToken", data.accessToken);
+      })();
+    }
+  }, [user]);
+  //
   let errorElement;
   if (GoogleError || GithubError) {
     errorElement = "";

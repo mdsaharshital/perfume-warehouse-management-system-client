@@ -7,42 +7,39 @@ import ManageAllitemsTable from "../ManageAllitemsTable/ManageAllitemsTable";
 import Loading from "../Shared/Loading/Loading";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
 
 const MyItems = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
-  const [myProducts, setMyProducts] = useState([]);
-  useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const { data } = await axios.get(
-          `https://gentle-chamber-62295.herokuapp.com/myitems/${user.email}`,
-          {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-            },
-          }
-        );
-        if (!data.success) return toast.error(data.error);
-        setMyProducts(data.data);
-      } catch (error) {
-        console.log(error.message);
-        if (error.response.status === 401 || error.response.status === 403) {
-          toast.error("forbidden access");
-          signOut(auth);
-          navigate("/signin");
-        }
+  const { data, isLoading, refetch } = useQuery("doctors", () =>
+    fetch(`https://gentle-chamber-62295.herokuapp.com/myitems/${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => {
+      console.log(res);
+      if (res.status === 401 || res.status === 403) {
+        toast.error("forbidden access");
+        signOut(auth);
+        localStorage.removeItem("accessToken");
+        navigate("/signin");
       }
-    };
-    getProducts();
-  }, []);
-  if (loading) {
+      return res.json();
+    })
+  );
+  //
+  useEffect(() => {
+    if (!data?.success) return toast.error(data?.error);
+  }, [data]);
+  //
+  if (loading || isLoading) {
     return <Loading />;
   }
   return (
     <div>
       <h1 className="text-center pt-5">User name :{user.displayName}</h1>
-      <h3 className="text-center ">Total Items :{myProducts.length}</h3>
+      <h3 className="text-center ">Total Items :{data?.data?.length}</h3>
       <div className="col-10 col-md-8 col-lg-8 my-4 mx-auto">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -66,8 +63,12 @@ const MyItems = () => {
               </tr>
             </thead>
             <tbody>
-              {myProducts.map((product) => (
-                <ManageAllitemsTable key={product._id} product={product} />
+              {data?.data?.map((product) => (
+                <ManageAllitemsTable
+                  key={product._id}
+                  refetch={refetch}
+                  product={product}
+                />
               ))}
             </tbody>
           </table>

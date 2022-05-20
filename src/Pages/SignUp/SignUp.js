@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import auth from "./../../firebase.init";
 import {
   useAuthState,
@@ -10,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const SignUp = () => {
   const [sendEmailVerification, sending] = useSendEmailVerification(auth);
 
   const [getUser] = useAuthState(auth);
+
   const handleSignUp = async (e) => {
     e.preventDefault();
     const displayName = e.target.name.value;
@@ -36,6 +38,20 @@ const SignUp = () => {
     toast.success("Email verification mail has been sent");
     e.target.reset();
   };
+  //
+  useEffect(() => {
+    if (getUser) {
+      (async () => {
+        const email = getUser?.email;
+        const { data } = await axios.post(
+          "https://gentle-chamber-62295.herokuapp.com/login",
+          { email }
+        );
+        localStorage.setItem("accessToken", data.accessToken);
+      })();
+    }
+  }, [getUser]);
+  //
   if (getUser) {
     navigate(from, { replace: true });
   }

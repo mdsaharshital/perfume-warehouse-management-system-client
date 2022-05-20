@@ -15,6 +15,7 @@ const Header = () => {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const logout = () => {
+    localStorage.removeItem("accessToken");
     signOut(auth);
   };
   const [isSidebarClosed, setSidebarClosed] = useState(true);
