@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import auth from "./../../firebase.init";
 import {
   useAuthState,
@@ -10,6 +10,7 @@ import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { toast } from "react-toastify";
 import axios from "axios";
+import useToken from "../../hooks/useToken";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -30,12 +31,13 @@ const SignIn = () => {
     const user = { email, password };
     console.log(user);
     await signInWithEmailAndPassword(email, password);
-    const { data } = await axios.post(
-      "https://gentle-chamber-62295.herokuapp.com/login",
-      { email }
-    );
-
-    localStorage.setItem("accessToken", data.accessToken);
+    if (getUser) {
+      const { data } = await axios.post(
+        "https://gentle-chamber-62295.herokuapp.com/login",
+        { email }
+      );
+      localStorage.setItem("accessToken", data.accessToken);
+    }
     e.target.reset();
   };
 
@@ -48,9 +50,16 @@ const SignIn = () => {
     }
   };
 
-  if (getUser) {
-    navigate(from, { replace: true });
-  }
+  const [token] = useToken(getUser);
+
+  // navigate
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, getUser, from, navigate]);
+  //
+
   if (loading || sending) {
     return <Loading />;
   }

@@ -1,5 +1,4 @@
 import React from "react";
-import "./ManageAllitemsTable.css";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
@@ -28,7 +27,6 @@ const ManageAllitemsTable = ({ product, refetch }) => {
               toast.error(data.error);
             }
             const remaining = products.filter((p) => p._id !== id);
-            console.log(remaining);
             setProducts(remaining);
             refetch();
             toast.success(data.message);

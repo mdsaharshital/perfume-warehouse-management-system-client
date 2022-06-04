@@ -8,31 +8,19 @@ import { BsGithub, BsGoogle } from "react-icons/bs";
 import auth from "../../../firebase.init";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
-import axios from "axios";
+import useToken from "./../../../hooks/useToken";
 
 const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
-  const [signInWithGoogle, GoogleUser, GoogleLoading, GoogleError] =
+  const [signInWithGoogle, , GoogleLoading, GoogleError] =
     useSignInWithGoogle(auth);
-  const [signInWithGithub, GithubUser, GithubLoading, GithubError] =
+  const [signInWithGithub, , GithubLoading, GithubError] =
     useSignInWithGithub(auth);
-  const [user] = useAuthState(auth);
+  const [getUser] = useAuthState(auth);
 
-  useEffect(() => {
-    if (user) {
-      (async () => {
-        const email = user?.email;
-        const { data } = await axios.post(
-          "https://gentle-chamber-62295.herokuapp.com/login",
-          { email }
-        );
-        localStorage.setItem("accessToken", data.accessToken);
-      })();
-    }
-  }, [user]);
   //
   let errorElement;
   if (GoogleError || GithubError) {
@@ -46,11 +34,17 @@ const SocialLogin = () => {
       </div>
     );
   }
+  const [token] = useToken(getUser);
+
+  // navigate
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, getUser, from, navigate]);
+  //
   if (GoogleLoading || GithubLoading) {
     return <Loading />;
-  }
-  if (GoogleUser || GithubUser) {
-    navigate(from, { replace: true });
   }
   return (
     <div>

@@ -10,7 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../Shared/Loading/Loading";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import { toast } from "react-toastify";
-import axios from "axios";
+import useToken from "../../hooks/useToken";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -39,22 +39,15 @@ const SignUp = () => {
     e.target.reset();
   };
   //
+  const [token] = useToken(getUser);
+
+  // navigate
   useEffect(() => {
-    if (getUser) {
-      (async () => {
-        const email = getUser?.email;
-        const { data } = await axios.post(
-          "https://gentle-chamber-62295.herokuapp.com/login",
-          { email }
-        );
-        localStorage.setItem("accessToken", data.accessToken);
-      })();
+    if (token) {
+      navigate(from, { replace: true });
     }
-  }, [getUser]);
+  }, [token, getUser, from, navigate]);
   //
-  if (getUser) {
-    navigate(from, { replace: true });
-  }
   if (loading || updating || sending) {
     return <Loading />;
   }

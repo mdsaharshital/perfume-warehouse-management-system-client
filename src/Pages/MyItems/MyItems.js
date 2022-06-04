@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
@@ -18,7 +17,6 @@ const MyItems = () => {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     }).then((res) => {
-      console.log(res);
       if (res.status === 401 || res.status === 403) {
         toast.error("forbidden access");
         signOut(auth);

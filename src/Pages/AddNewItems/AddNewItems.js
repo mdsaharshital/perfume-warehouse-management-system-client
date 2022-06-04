@@ -23,7 +23,6 @@ const AddNewItems = () => {
       description: e.target.description.value,
       img: e.target.img.value,
     };
-    console.log(newProduct);
     const { data } = await axios.post(
       "https://gentle-chamber-62295.herokuapp.com/products",
       newProduct
