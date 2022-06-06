@@ -1,11 +1,12 @@
 # Perfume Warehouse
 
-This is a fullstack project of inventory managemnet system where a owner and his co workers can easily manage their products. They can add their products as well as delete it. They can manage their whole inventory when they are log in. These are some private route as well as normal routes. This full stack project is based on MERN Stack, used technologies are mentioned below :
+This is a full-stack inventory management system that allows a business owner and his employees to simply manage their items. They have the ability to both add and remove goods. When users log in, they may control their whole inventory. There are several private as well as public routes in this list. The MERN Stack is utilized in this complete stack project, and the technologies involved are listed below:
 [Live link][https://perfume-warehouse-17111.web.app/]
 
 ### Frontend technologies
 
 - react
+- react-query
 - react-dom
 - firebase
 - react-firebase-hooks
@@ -21,8 +22,9 @@ This is a fullstack project of inventory managemnet system where a owner and his
 ### Features
 
 - automatic logout for unauthorized token
+- add,remove product by authentic user
 - Private route
-- conditional header menues
+- conditional header menus
 - signin/signup feature using firebase
 - Sigle page app (react router dom)
 - authentication using JW token
