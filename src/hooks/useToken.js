@@ -7,7 +7,7 @@ const useToken = (user) => {
   console.log("hola", currentUser);
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://gentle-chamber-62295.herokuapp.com/login`, {
+      fetch(`https://perfume-warehouse-backend.up.railway.app/login`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

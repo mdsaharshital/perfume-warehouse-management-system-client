@@ -33,7 +33,7 @@ const SignIn = () => {
     await signInWithEmailAndPassword(email, password);
     if (getUser) {
       const { data } = await axios.post(
-        "https://gentle-chamber-62295.herokuapp.com/login",
+        "https://perfume-warehouse-backend.up.railway.app/login",
         { email }
       );
       localStorage.setItem("accessToken", data.accessToken);

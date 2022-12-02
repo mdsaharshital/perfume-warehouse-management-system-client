@@ -18,9 +18,12 @@ const ManageAllitemsTable = ({ product, refetch }) => {
     const confrimDelete = window.confirm("Are you sure ?");
     if (confrimDelete) {
       async function deletePost() {
-        fetch(`https://gentle-chamber-62295.herokuapp.com/product/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://perfume-warehouse-backend.up.railway.app/product/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.success) {

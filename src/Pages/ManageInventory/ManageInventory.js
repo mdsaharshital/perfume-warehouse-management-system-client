@@ -13,8 +13,8 @@ const ManageInventory = () => {
     isLoading,
     refetch,
   } = useQuery("products", () =>
-    fetch("https://gentle-chamber-62295.herokuapp.com/products").then((res) =>
-      res.json()
+    fetch("https://perfume-warehouse-backend.up.railway.app/products").then(
+      (res) => res.json()
     )
   );
   const [, loading] = useAuthState(auth);

@@ -9,7 +9,7 @@ const UpdateStock = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const url = `https://gentle-chamber-62295.herokuapp.com/products/${id}`;
+    const url = `https://perfume-warehouse-backend.up.railway.app/products/${id}`;
     (async () => {
       const { data } = await axios.get(url);
       setProduct(data.data);
@@ -19,7 +19,7 @@ const UpdateStock = () => {
   // common function to decrease quantity and increase sold
   const manageQuantitySold = async (newQuantity, newSold, id, msg) => {
     const details = { newQuantity, newSold, id };
-    const url = `https://gentle-chamber-62295.herokuapp.com/products`;
+    const url = `https://perfume-warehouse-backend.up.railway.app/products`;
     const { data } = await axios.put(url, details);
     //
     if (!data.success) {

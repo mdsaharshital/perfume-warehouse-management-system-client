@@ -24,7 +24,7 @@ const AddNewItems = () => {
       img: e.target.img.value,
     };
     const { data } = await axios.post(
-      "https://gentle-chamber-62295.herokuapp.com/products",
+      "https://perfume-warehouse-backend.up.railway.app/products",
       newProduct
     );
     if (!data.success) {
