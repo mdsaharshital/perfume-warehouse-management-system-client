@@ -28,15 +28,15 @@ const Header = () => {
           <nav className={isSidebarClosed ? "nav-menu active" : "nav-menu"}>
             <ul className="nav-menu-items">
               <li className="navbar-toggle">
-                {isSidebarClosed || (
-                  <h1 className="navbar-text">Perfume Warehouse</h1>
-                )}
-                <div className="cursor-pointer">
+                <div className="cursor-pointer mr-5 ml-2">
                   <HiOutlineMenuAlt1
                     style={{ color: "black" }}
                     onClick={showSidebar}
                   />
                 </div>
+                {isSidebarClosed || (
+                  <h1 className="text-[18px] font-bold pt-2">PW</h1>
+                )}
               </li>
               <li className="nav-text">
                 <CustomLink to="/" className="nav-menu-flex">

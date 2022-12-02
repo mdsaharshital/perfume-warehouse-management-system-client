@@ -21,7 +21,7 @@
     font-size: 2rem;
     margin-top: 1.5rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
   }
   .nav-menu.active {
@@ -79,3 +79,14 @@
     margin: 1rem;
   }
  
+  @media only screen and (max-width: 600px) {
+   
+    .nav-menu.active {
+      width: 40px;
+    }
+    .nav-text {
+      padding: 5px  0px;
+      margin: 20px 0;
+      height: 40px;
+    }
+  }
