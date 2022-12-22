@@ -5,7 +5,7 @@ const useProducts = () => {
   const [products, setProducts] = useState([]);
   const { pathname } = useParams();
   useEffect(() => {
-    fetch(`https://perfume-warehouse-backend.up.railway.app/products`)
+    fetch(`https://perfume-server.onrender.com/products`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.data);

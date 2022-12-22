@@ -7,7 +7,7 @@ const useToken = (user) => {
   console.log("hola", currentUser);
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://perfume-warehouse-backend.up.railway.app/login`, {
+      fetch(`https://perfume-server.onrender.com/login`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

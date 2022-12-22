@@ -24,7 +24,7 @@ const AddNewItems = () => {
       img: e.target.img.value,
     };
     const { data } = await axios.post(
-      "https://perfume-warehouse-backend.up.railway.app/products",
+      "https://perfume-server.onrender.com/products",
       newProduct
     );
     if (!data.success) {

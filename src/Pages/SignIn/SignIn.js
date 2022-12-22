@@ -33,7 +33,7 @@ const SignIn = () => {
     await signInWithEmailAndPassword(email, password);
     if (getUser) {
       const { data } = await axios.post(
-        "https://perfume-warehouse-backend.up.railway.app/login",
+        "https://perfume-server.onrender.com/login",
         { email }
       );
       localStorage.setItem("accessToken", data.accessToken);

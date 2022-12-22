@@ -18,12 +18,9 @@ const ManageAllitemsTable = ({ product, refetch }) => {
     const confrimDelete = window.confirm("Are you sure ?");
     if (confrimDelete) {
       async function deletePost() {
-        fetch(
-          `https://perfume-warehouse-backend.up.railway.app/product/${id}`,
-          {
-            method: "DELETE",
-          }
-        )
+        fetch(`https://perfume-server.onrender.com/product/${id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data.success) {

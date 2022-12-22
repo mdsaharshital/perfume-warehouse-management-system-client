@@ -13,8 +13,8 @@ const ManageInventory = () => {
     isLoading,
     refetch,
   } = useQuery("products", () =>
-    fetch("https://perfume-warehouse-backend.up.railway.app/products").then(
-      (res) => res.json()
+    fetch("https://perfume-server.onrender.com/products").then((res) =>
+      res.json()
     )
   );
   const [, loading] = useAuthState(auth);

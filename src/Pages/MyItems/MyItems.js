@@ -12,14 +12,11 @@ const MyItems = () => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const { data, isLoading, refetch } = useQuery("doctors", () =>
-    fetch(
-      `https://perfume-warehouse-backend.up.railway.app/myitems/${user?.email}`,
-      {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    ).then((res) => {
+    fetch(`https://perfume-server.onrender.com/myitems/${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => {
       if (res.status === 401 || res.status === 403) {
         toast.error("forbidden access");
         signOut(auth);
